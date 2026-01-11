@@ -12,9 +12,19 @@ export interface Product {
 @Injectable()
 export class ProductsService {
   private products: Product[] = [
-    { id: 1, name: 'Laptop', price: 999.99, description: 'High-performance laptop' },
+    {
+      id: 1,
+      name: 'Laptop',
+      price: 999.99,
+      description: 'High-performance laptop',
+    },
     { id: 2, name: 'Mouse', price: 29.99, description: 'Wireless mouse' },
-    { id: 3, name: 'Keyboard', price: 79.99, description: 'Mechanical keyboard' },
+    {
+      id: 3,
+      name: 'Keyboard',
+      price: 79.99,
+      description: 'Mechanical keyboard',
+    },
   ];
 
   create(createProductDto: CreateProductDto) {
@@ -39,7 +49,10 @@ export class ProductsService {
   update(id: number, updateProductDto: UpdateProductDto) {
     const productIndex = this.products.findIndex((p) => p.id === id);
     if (productIndex !== -1) {
-      this.products[productIndex] = { ...this.products[productIndex], ...updateProductDto };
+      this.products[productIndex] = {
+        ...this.products[productIndex],
+        ...updateProductDto,
+      };
       return this.products[productIndex];
     }
     return null;
