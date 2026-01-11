@@ -1,0 +1,23 @@
+# Dockerfile for Angular Client (Development)
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Copy root package files
+COPY package.json ./
+
+# Copy workspace packages
+COPY apps/client-angular/package.json ./apps/client-angular/
+
+# Install dependencies (npm handles workspaces automatically)
+RUN npm install --legacy-peer-deps
+
+# Copy all source code
+COPY apps/client-angular ./apps/client-angular
+
+WORKDIR /app/apps/client-angular
+
+EXPOSE 4200
+
+# Run Angular in dev mode with proxy
+CMD ["npm", "run", "start:dev", "--", "--host", "0.0.0.0"]

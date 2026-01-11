@@ -1,0 +1,44 @@
+services:
+  # NestJS API Backend
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile.dev
+    container_name: nestjs-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/api/src:/app/apps/api/src
+      - ./apps/api/tsconfig.json:/app/apps/api/tsconfig.json
+      - ./apps/api/nest-cli.json:/app/apps/api/nest-cli.json
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Angular Client Frontend
+  client:
+    build:
+      context: .
+      dockerfile: ./apps/client-angular/Dockerfile.dev
+    container_name: angular-client
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./apps/client-angular/src:/app/apps/client-angular/src
+      - ./apps/client-angular/angular.json:/app/apps/client-angular/angular.json
+      - ./apps/client-angular/tsconfig.json:/app/apps/client-angular/tsconfig.json
+      - ./apps/client-angular/tsconfig.app.json:/app/apps/client-angular/tsconfig.app.json
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+    depends_on:
+      - api
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge

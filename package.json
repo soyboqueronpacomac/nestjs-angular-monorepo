@@ -1,0 +1,19 @@
+{
+  "name": "nestjs-angular-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "packageManager": "bun@1.2.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:dev": "turbo run start:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.7.3"
+  }
+}
