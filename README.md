@@ -1,5 +1,8 @@
 # NestJS + Angular Monorepo
 
+[![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
+[![es](https://img.shields.io/badge/lang-es-yellow.svg)](README.es.md)
+
 Full-stack monorepo with NestJS backend and Angular 21 frontend, configured with Docker for development.
 
 ## Tech Stack
